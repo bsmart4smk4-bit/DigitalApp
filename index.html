@@ -1,181 +1,60 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>B-SMART 4 - Bank Mini</title>
 
-  <!-- PWA & Theme -->
+  <!-- PWA & Icons -->
+  <link rel="icon" type="image/png" href="icon-512.png">
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f2a5c">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="B-SMART 4">
-
+  
   <style>
-    /* === RESET & BASE === */
-    * {
-      box-sizing: border-box;
+    body, html {
       margin: 0;
       padding: 0;
-    }
-    body {
-      background-color: #e2e8f0; /* Warna latar desktop */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      height: 100%;
+      background: #f3f4f6; /* Warna background B-SMART 4 */
+      overflow: hidden; /* Mencegah scroll ganda */
     }
 
-    /* === BOOT LOADER === */
-    #bootLoader {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #0f2a5c, #1e3a8a);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      gap: 16px;
-      z-index: 999999;
-      transition: opacity 0.4s ease;
-    }
-    .boot-logo {
-      width: 72px;
-      height: 72px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .boot-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-    .boot-subtitle {
-      font-size: 12px;
-      opacity: 0.75;
-      margin-top: -10px;
-    }
-    .boot-spinner {
-      width: 28px;
-      height: 28px;
-      border: 3px solid rgba(255, 255, 255, 0.25);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: bootSpin 0.8s linear infinite;
-      margin-top: 6px;
-    }
-    @keyframes bootSpin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* === PHONE WRAPPER (Desktop) === */
-    #phoneWrapper {
+    .app-wrapper {
       position: relative;
-      width: 414px;
-      height: 896px;
-      background: #000;
-      border-radius: 40px;
-      padding: 12px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), inset 0 0 0 2px #444;
-      display: flex;
-      flex-direction: column;
+      width: 100%;
+      height: 100%;
     }
 
-    .phone-notch {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 28px;
-      background: #000;
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
-      z-index: 10;
-    }
-
-    /* === IFRAME === */
     iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
-      border-radius: 30px;
-      background-color: #f3f4f6; /* Warna background GAS */
-      overflow: hidden;
-    }
-
-    /* === RESPONSIVE (Mobile) === */
-    @media (max-width: 768px) {
-      body {
-        background-color: #f3f4f6;
-        align-items: flex-start;
-      }
-      #phoneWrapper {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-        padding: 0;
-        box-shadow: none;
-        border: none;
-      }
-      .phone-notch {
-        display: none; /* Sembunyikan poni di HP asli */
-      }
-      iframe {
-        border-radius: 0;
-      }
+      display: block;
     }
   </style>
 </head>
 <body>
-
-  <!-- ============ BOOT LOADER ============ -->
-  <div id="bootLoader">
-    <div class="boot-logo">BS4</div>
-    <div class="boot-title">B-SMART 4</div>
-    <div class="boot-subtitle">Sistem Informasi Bank Mini</div>
-    <div class="boot-spinner"></div>
+  <div class="app-wrapper">
+    <!-- Ganti link di bawah ini dengan link Web App B-SMART 4 Anda -->
+    <iframe src="https://script.google.com/macros/s/AKfycbyjseuDfBONWbn766jjvrROSYetUF9io9U-k6gpZtXi4S4LeT26Umct_Cgx50IJMU1ZoQ/exec" allow="clipboard-read; clipboard-write; fullscreen"></iframe>
   </div>
-
-  <!-- ============ PHONE FRAME ============ -->
-  <div id="phoneWrapper">
-    <div class="phone-notch"></div>
-    
-    <!-- IFRAME GAS -->
-    <iframe 
-      id="appIframe"
-      src="https://script.google.com/macros/s/AKfycbyjseuDfBONWbn766jjvrROSYetUF9io9U-k6gpZtXi4S4LeT26Umct_Cgx50IJMU1ZoQ/exec" 
-      allow="clipboard-read; clipboard-write"
-      onload="hideLoader()">
-    </iframe>
-  </div>
-
-  <!-- Script untuk menyembunyikan loader -->
+  
   <script>
-    function hideLoader() {
-      const loader = document.getElementById('bootLoader');
-      if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 400); // Waktu transisi sesuai CSS (0.4s)
-      }
+    // Daftarkan Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW terdaftar!', reg.scope))
+          .catch(err => console.log('SW gagal!', err));
+      });
     }
-
-    // Fallback: Jika iframe memakan waktu terlalu lama (misal > 10 detik), paksa hilangkan loader
-    setTimeout(hideLoader, 10000);
   </script>
-
 </body>
 </html>
